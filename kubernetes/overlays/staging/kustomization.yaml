@@ -1,6 +1,10 @@
 resources:
 # - ./../../base
 - ../../base
+
+patches:
+  - path: ping-depl.yaml
+
 namePrefix: staging-
 
 images:
