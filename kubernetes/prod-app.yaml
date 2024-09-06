@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: Pingpong-production
+  name: pingpong-production
   namespace: argocd
 spec:
   project: default
