@@ -1,4 +1,4 @@
-name: Workflow Triggered by Another Repo
+name: Main Triggered Workflow
 
 on:
   workflow_dispatch:
