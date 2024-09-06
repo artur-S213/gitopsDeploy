@@ -7,11 +7,15 @@ spec:
   project: default
   source:
     repoURL: https://github.com/artur-S213/gitopsDeploy
-    path: kubernetes/overlays/staging
+    path: overlays/staging
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
     namespace: staging-app
+  # operation:
+  #   sync:
+  #     syncStrategy:
+  #       apply: {}
   syncPolicy:
     automated:
       prune: true
