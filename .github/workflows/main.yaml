@@ -1,4 +1,4 @@
-name: Main Triggered Workflow
+name: Main Triggered Action
 
 on:
   workflow_dispatch:
