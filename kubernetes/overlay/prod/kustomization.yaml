@@ -1,0 +1,10 @@
+resources:
+- ./../../base
+patches:
+  - path: ping-depl.yaml
+
+namePrefix: prod-
+
+images:
+  - name: PINGPONG_IMAGE
+    newName: artursreg.azurecr.io/pingpong408:latest

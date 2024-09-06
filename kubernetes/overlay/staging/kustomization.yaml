@@ -1,0 +1,8 @@
+resources:
+- ./../../base
+
+namePrefix: staging-
+
+images:
+  - name: PINGPONG_IMAGE
+    newName: artursreg.azurecr.io/pingpong408:latest

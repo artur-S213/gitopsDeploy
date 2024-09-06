@@ -1,0 +1,8 @@
+resources:
+- db-config.yaml
+- db-secret.yaml
+- ping-depl.yaml
+- ping-svc.yaml
+- postgres-pvc.yaml
+- postgres-svc.yaml
+- postgres.yaml

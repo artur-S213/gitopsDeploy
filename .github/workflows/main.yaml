@@ -1,0 +1,52 @@
+name: Workflow Triggered by Another Repo
+
+on:
+  workflow_dispatch:
+    
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_SP_CREDENTIALS }}
+
+    - name: Disable Azure CLI version check
+      run: |            
+        export AZURE_HTTP_USER_AGENT='None'
+    
+    - name: Get AKS credentials
+      uses: azure/aks-set-context@v1
+      with:
+        creds: ${{ secrets.AZURE_SP_CREDENTIALS }}
+        resource-group: ${{ secrets.AKS_RESOURCE_GROUP }}
+        cluster-name: ${{ secrets.AKS_CLUSTER_NAME }}
+
+        
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # - name: First Deploy to AKS 
+    #   run: |  
+    #     kustomize build . | kubectl apply -f -
+
+    - name: Set up Kustomize
+      uses: imranismail/setup-kustomize@v2
+ 
+    # - name: Set images in kustomization.yaml
+    #   run: |
+    #       ls -la
+    #       kustomize edit set image PINGPONG_IMAGE=${{ secrets.ACR_NAME }}.azurecr.io/pingpong407:latest
+          
+    # - name: commit kustomization.yaml to GitHub
+    #   uses: EndBug/add-and-commit@v9          
+    #   with:          
+    #     add: 'kustomization.yml'
+    #     message: New version released ${{ github.sha }}
+          
+    - name: Second Deploy to AKS
+      run: |
+        kubectl create namespace staging-app
+        kubectl apply -f kubernetes/staging-app.yaml 
