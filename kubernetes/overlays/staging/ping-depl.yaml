@@ -3,10 +3,9 @@ kind: Deployment
 metadata:
   name: pingpong-depl
 spec:
-  replicas: 2
   template:
     spec:
       initContainers:
         - name: wait-for-postgres
           image: busybox
-          command: ['sh', '-c', 'until nc -z prod-postgres-service 5432; do echo waiting for postgres; sleep 2; done;']
+          command: ['sh', '-c', 'until nc -z staging-postgres-service 5432; do echo waiting for postgres; sleep 2; done;']
