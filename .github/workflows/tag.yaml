@@ -66,5 +66,4 @@ jobs:
           
     - name: Second Deploy to AKS
       run: |
-        kubectl create namespace prod-app
         kubectl apply -f kubernetes/prod-app.yaml 

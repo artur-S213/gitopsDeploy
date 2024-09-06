@@ -48,5 +48,4 @@ jobs:
           
     - name: Second Deploy to AKS
       run: |
-        kubectl create namespace staging-app
         kubectl apply -f kubernetes/staging-app.yaml 
