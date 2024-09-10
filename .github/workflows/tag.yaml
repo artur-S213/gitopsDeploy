@@ -2,24 +2,28 @@ name: Tag Triggered Workflow
 
 on:
   workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to deploy'
+        required: true
     
 jobs:
-  check:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+  # check:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
 
-      - name: Ensure this is a tag
-        if: startsWith(github.ref, 'refs/tags/')
-        run: | 
-          echo "This workflow is triggered by a tag: ${{ github.ref }}"
+  #     - name: Ensure this is a tag
+  #       if: startsWith(github.ref, 'refs/tags/')
+  #       run: | 
+  #         echo "This workflow is triggered by a tag: ${{ github.ref }}"
 
-      - name: Exit if not a tag
-        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
-        run: |
-          echo "This workflow should only run for tags. Current ref is ${{ github.ref }}."
-          exit 1
+  #     - name: Exit if not a tag
+  #       if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+  #       run: |
+  #         echo "This workflow should only run for tags. Current ref is ${{ github.ref }}."
+  #         exit 1
 
 
   deploy:
